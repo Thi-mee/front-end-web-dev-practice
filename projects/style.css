@@ -1,0 +1,97 @@
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+html {
+	scroll-behavior: smooth;
+}
+body {
+	background-color: #18383f;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.game-container {
+	max-width: 80%;
+	width: 30%;
+	min-width: 350px;
+	height: 70%;
+	margin: auto auto;
+	background-color: rgba(0, 0, 0, 0.5);
+	position: relative;
+	display: flex;
+	filter: drop-shadow(-10px 10px 20px #000);
+}
+.welcome-screen {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.welcome-screen h1 {
+	color: aquamarine;
+	flex-basis: 10%;
+	padding: .5em;
+	border-bottom: 1px solid rgba(255, 255, 190, 0.8);
+}
+.second-screen,
+.first-screen,
+game-board {
+	display: none;
+}
+.first-screen.show,
+.second-screen.show{
+	flex-basis: 90%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.first-screen h2,
+.second-screen h2 {
+	font-size: 2rem;
+	color: rgb(199, 199, 199);
+	margin-bottom: 1em;
+}
+.first-screen .option-layout,
+.second-screen .option-layout {
+	display: flex;
+	width: 80%;
+	justify-content: space-around;
+	margin-bottom: 3em;
+}
+.first-screen button,
+.second-screen button {
+	padding: 0.5em 1em;
+	color: #fff;
+	background-color: #18383f;
+	border: none;
+	border-radius: 0.5em;
+	filter: drop-shadow(-10px 10px 10px rgba(0, 0, 0, 0.788));
+	transition: transform 200ms ease-in-out;
+	cursor: pointer;
+}
+.first-screen button:hover,
+.second-screen button:hover {
+	transform: scale(1.2);
+}
+.active {
+	color: white !important;
+	background-color: black !important;
+  font-weight: bold;
+  border: 1px solid white;
+}
+
+
+
+.game-board.show {
+	flex-basis: 90%;
+	width: 100%;
+}
