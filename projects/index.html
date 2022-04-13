@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./style.css">
+  <script defer src="./options.js"></script>
   <script defer src="./script.js"></script>
   <title>Document</title>
 </head>
@@ -25,12 +26,12 @@
       <div class="second-screen">
         <h2>Pick your<br>Shape</h2>
         <div class="option-layout">
-          <button id="x-button" class="x-button">Computer</button>
-          <button id="o-button" class="o-button">A Friend</button>
+          <button id="x-button" class="x-button">X</button>
+          <button id="o-button" class="o-button">O</button>
         </div>
         <button class="play-buttton" id="play-button">Play</button>
       </div>
-      <div class="game-board" id="game-board">
+      <div class="game-board x" id="game-board">
         <div class="cell" data-cell></div>
         <div class="cell" data-cell></div>
         <div class="cell" data-cell></div>
@@ -40,6 +41,11 @@
         <div class="cell" data-cell></div>
         <div class="cell" data-cell></div>
         <div class="cell" data-cell></div>
+        <div class="winning-message blurred-container" id="winning-message">
+          <div data-winning-text-element>X wins</div>
+          <button id="restart-button">Restart</button>
+          <button id="menu-button">Menu</button>
+        </div>
       </div>
     </div>
   </div>

@@ -3,21 +3,33 @@
 	padding: 0;
 	margin: 0;
 }
+:root{
+  --cell-size: 120px;
+  --bg-color: #2e2d3b;
+  --game-border-color: #FFF;
+  --mark-size: calc(var(--cell-size) * 0.8);
+  --game-hover-color: rgb(150,150,150);
+  --highlight-text-color: white;
+
+}
 html {
 	scroll-behavior: smooth;
 }
 body {
-	background-color: #18383f;
+	background-color: var(--bg-color);
 	width: 100vw;
 	height: 100vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
+.show {
+	display: flex;
+}
 .game-container {
-	max-width: 80%;
-	width: 30%;
-	min-width: 350px;
+	max-width: 800px;
+	width: 40%;
+	min-width: 400px;
 	height: 70%;
 	margin: auto auto;
 	background-color: rgba(0, 0, 0, 0.5);
@@ -41,7 +53,7 @@ body {
 }
 .second-screen,
 .first-screen,
-game-board {
+.game-board {
 	display: none;
 }
 .first-screen.show,
@@ -89,9 +101,142 @@ game-board {
   border: 1px solid white;
 }
 
-
-
 .game-board.show {
 	flex-basis: 90%;
 	width: 100%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  align-content: center;
+  grid-template-columns: repeat(3, auto);
+}
+
+.cell{
+  height:  var(--cell-size);
+  width:  var(--cell-size);
+  border: 1px solid var(--game-border-color);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3){
+  border-top: 0;
+}
+.cell:nth-child(3n+1){
+  border-left: 0;
+}
+.cell:nth-child(3n+3){
+  border-right: 0;
+}
+
+.cell:nth-child(9),
+.cell:nth-child(7),
+.cell:nth-child(8){
+  border-bottom: 0;
+}
+.cell.x,
+.cell.o{
+  cursor: not-allowed;
+}
+.cell.x::before,
+.cell.x::after,
+.game-board.x .cell:not(.x):not(.o):hover::before,
+.game-board.x .cell:not(.x):not(.o):hover::after{
+  content: "";
+  position: absolute;
+  height: var(--mark-size);
+  width: 5px;
+  background-color: var(--game-hover-color);
+}
+.cell.x::before,
+.cell.x::after{
+  background-color: var(--highlight-text-color);
+}
+.cell.x::before,
+.game-board.x .cell:not(.x):not(.o):hover::before{
+  transform: rotate(45deg);
+}
+.cell.x::after,
+.game-board.x .cell:not(.x):not(.o):hover::after{
+  transform: rotate(-45deg);
+}
+.cell.o::before,
+.cell.o::after,
+.game-board.o .cell:not(.x):not(.o):hover::before,
+.game-board.o .cell:not(.x):not(.o):hover::after{
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+.cell::before,
+.game-board.o .cell:not(.x):not(.o):hover::before{
+  height: var(--mark-size);
+  width: var(--mark-size);
+  background-color: var(--game-hover-color);
+}
+.cell.o::before,
+.cell.o::after{
+  background-color: var(--highlight-text-color);
+}
+.cell.o::after,
+.game-board.o .cell:not(.x):not(.o):hover::after{
+  background-color: rgba(0, 0, 0, 0.9);
+  height: calc(var(--mark-size) * .9);
+  width: calc(var(--mark-size) * .9);
+}
+
+
+.winning-message {
+	position: absolute;
+	inset: 0;
+	display: none;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(48, 48, 48, 0.5);
+	color: var(--main-text-color);
+	font-size: 4rem;
+	backdrop-filter: blur(5px);
+}
+.winning-message button {
+	font-size: 2rem;
+	background-color: rgb(192, 192, 192);
+	border: none;
+	margin-top: 0.3em;
+	border-radius: 0.5em;
+	padding: 0.5em 1em;
+	cursor: pointer;
+	transition: transform 0.1s ease-in-out;
+}
+.winning-message button:hover {
+	transform: scale(0.9);
+	background-color: rgb(150, 150, 150);
+}
+.winning-message.show {
+	display: flex;
+}
+/* @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  .blurred-container {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+}
+
+/* slightly transparent fallback for Firefox (not supporting backdrop-filter) */ /*
+@supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+  .blurred-container {
+    background-color: rgba(153, 153, 153, 0.8);
+  }
+} */
+
+
+
+
+.show {
+	display: flex;
 }
